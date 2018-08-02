@@ -1,0 +1,29 @@
+resources:
+# - name: pcf-pipelines
+#   type: git
+#   source:
+#     uri: https://github.com/pivotal-cf/pcf-pipelines.git
+#     branch: master
+
+- name: docker-image-source
+  type: docker-image
+  source:
+    repository: pcfnorm/rootfs
+    tag: latest
+
+- name: docker-image-destination
+  type: docker-image
+  source: 
+    repository: ((docker_username))/rootfs 
+    username: ((docker_username))
+    password: ((docker_password))
+
+jobs:
+- name: docker-transfer
+  plan:
+  - get: docker-image-source
+    params:
+      save: true
+  - put: docker-image-destination
+    params:
+      load: docker-image-source
