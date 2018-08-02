@@ -1,10 +1,4 @@
 resources:
-# - name: pcf-pipelines
-#   type: git
-#   source:
-#     uri: https://github.com/pivotal-cf/pcf-pipelines.git
-#     branch: master
-
 - name: docker-image-source
   type: docker-image
   source:
